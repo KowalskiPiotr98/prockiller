@@ -1,7 +1,10 @@
 mod proc;
+mod args;
 
 fn main() {
-    let proc = match proc::find_matching("yes") {
+    let args = args::read_args();
+
+    let proc = match proc::find_matching(args.proc_name.as_str()) {
         Some(p) => {
             println!("Found process {}", p.name());
             p
