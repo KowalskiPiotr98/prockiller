@@ -22,6 +22,7 @@ fn new(pid: &sysinfo::Pid, process: &sysinfo::Process) -> Proc {
 }
 
 pub fn find_matching(name: &str) -> Option<Proc> {
+    //todo: who knows how it will behave with more than a single proc matching
     let mut proc = sysinfo::System::new();
     proc.refresh_all();
     match proc.processes().iter().find(|p| p.1.name() == name) {

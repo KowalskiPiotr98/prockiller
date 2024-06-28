@@ -1,5 +1,6 @@
 mod proc;
 mod args;
+mod sleeper;
 
 fn main() {
     let args = args::read_args();
@@ -14,7 +15,12 @@ fn main() {
             return;
         }
     };
+
+    sleeper::sleep(args.seconds);
+
     if !proc.kill() {
         println!("Failed to kill process!");
+    } else {
+        println!("Process {} killed successfully!", args.proc_name);
     }
 }
